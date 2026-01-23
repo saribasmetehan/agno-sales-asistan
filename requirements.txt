@@ -1,0 +1,19 @@
+# Core Framework
+agno==2.4.0
+
+# LLM Providers
+openai
+
+# Environment & Configuration
+python-dotenv
+
+# Vector Database & Embeddings
+chromadb>=0.5.0
+sentence-transformers>=3.0.0
+onnxruntime # Required for FastEmbed/ChromaDB Default Embedding
+
+# Database
+sqlalchemy
+
+# Web Framework
+streamlit

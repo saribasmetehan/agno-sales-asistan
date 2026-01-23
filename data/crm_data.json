@@ -1,0 +1,82 @@
+{
+    "customers": [
+        {
+            "client_id": "101",
+            "client_name": "MegaBev Corp",
+            "industry": "FMCG",
+            "total_spend_ytd": 450000,
+            "last_meeting_date": "2024-12-15",
+            "account_manager": "Burak",
+            "region": "Istanbul",
+            "company_size": "Enterprise",
+            "contract_value": 500000,
+            "contract_status": "active",
+            "products_used": [
+                "In-Store Digital Displays",
+                "Mobile App Banners"
+            ]
+        },
+        {
+            "client_id": "102",
+            "client_name": "TechGiant",
+            "industry": "Electronics",
+            "total_spend_ytd": 120000,
+            "last_meeting_date": "2024-11-20",
+            "account_manager": "Elif",
+            "region": "Ankara",
+            "company_size": "Mid-Market",
+            "contract_value": 150000,
+            "contract_status": "active",
+            "products_used": [
+                "Mobile App Banners"
+            ]
+        },
+        {
+            "client_id": "103",
+            "client_name": "FashionHub",
+            "industry": "Retail",
+            "total_spend_ytd": 280000,
+            "last_meeting_date": "2024-12-01",
+            "account_manager": "Ayşe",
+            "region": "Izmir",
+            "company_size": "Enterprise",
+            "contract_value": 320000,
+            "contract_status": "active",
+            "products_used": [
+                "Premium Video Ads",
+                "Mobile App Banners"
+            ]
+        },
+        {
+            "client_id": "104",
+            "client_name": "AutoParts Inc",
+            "industry": "Automotive",
+            "total_spend_ytd": 95000,
+            "last_meeting_date": "2024-10-15",
+            "account_manager": "Mehmet",
+            "region": "Bursa",
+            "company_size": "SMB",
+            "contract_value": 100000,
+            "contract_status": "active",
+            "products_used": [
+                "Mobile App Banners"
+            ]
+        },
+        {
+            "client_id": "105",
+            "client_name": "HealthPlus Pharma",
+            "industry": "Healthcare",
+            "total_spend_ytd": 380000,
+            "last_meeting_date": "2024-12-10",
+            "account_manager": "Zeynep",
+            "region": "Istanbul",
+            "company_size": "Enterprise",
+            "contract_value": 450000,
+            "contract_status": "active",
+            "products_used": [
+                "Premium Video Ads",
+                "In-Store Digital Displays"
+            ]
+        }
+    ]
+}

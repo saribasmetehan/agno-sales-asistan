@@ -1,0 +1,145 @@
+[
+    {
+        "rule_id": "RULE_001",
+        "rule_category": "channel_strategy",
+        "industry_filter": [
+            "FMCG"
+        ],
+        "spend_threshold_min": null,
+        "spend_threshold_max": null,
+        "recommended_product": "In-Store Digital Display",
+        "priority_level": "high",
+        "action_type": "recommend",
+        "rule_text": "FMCG müşterileri için, marka görünürlüğünü artırmak amacıyla her zaman 'Mağaza İçi Dijital Ekran' ağımızı birincil kanal olarak tanıtın.",
+        "approval_required": false
+    },
+    {
+        "rule_id": "RULE_002",
+        "rule_category": "budget_threshold",
+        "industry_filter": [
+            "All"
+        ],
+        "spend_threshold_min": 0,
+        "spend_threshold_max": 150000,
+        "recommended_product": "Mobile App Banners",
+        "priority_level": "high",
+        "action_type": "recommend",
+        "rule_text": "Bir müşterinin yıl başından itibaren toplam harcaması 150 bin doların altındaysa, premium video reklamları zorlamayın. Bunun yerine, kesinlikle 'Mobil Uygulama Afişleri'nin satışını artırmaya odaklanın.",
+        "approval_required": false
+    },
+    {
+        "rule_id": "RULE_003",
+        "rule_category": "pricing_policy",
+        "industry_filter": [
+            "All"
+        ],
+        "spend_threshold_min": null,
+        "spend_threshold_max": null,
+        "recommended_product": null,
+        "priority_level": "critical",
+        "action_type": "require_approval",
+        "rule_text": "Finans müdürü tarafından resmi onay verilene kadar '2026 3. Çeyrek Fiyatlandırması' hakkında asla konuşmayın.",
+        "approval_required": true
+    },
+    {
+        "rule_id": "RULE_004",
+        "rule_category": "product_recommendation",
+        "industry_filter": [
+            "All"
+        ],
+        "spend_threshold_min": 150000,
+        "spend_threshold_max": null,
+        "recommended_product": "Premium Video Ads",
+        "priority_level": "medium",
+        "action_type": "recommend",
+        "rule_text": "Yıllık harcaması 150 bin doların üzerinde olan müşterilere Premium Video Reklamları sunabilirsiniz.",
+        "approval_required": false
+    },
+    {
+        "rule_id": "RULE_005",
+        "rule_category": "compliance",
+        "industry_filter": [
+            "Finance",
+            "Healthcare"
+        ],
+        "spend_threshold_min": null,
+        "spend_threshold_max": null,
+        "recommended_product": null,
+        "priority_level": "critical",
+        "action_type": "mandatory",
+        "rule_text": "Finans ve Sağlık sektörlerindeki müşterilerle çalışırken mutlaka veri gizliliği ve uyumluluk politikalarını belirtin.",
+        "approval_required": true
+    },
+    {
+        "rule_id": "RULE_006",
+        "rule_category": "channel_strategy",
+        "industry_filter": [
+            "Electronics",
+            "Technology"
+        ],
+        "spend_threshold_min": null,
+        "spend_threshold_max": null,
+        "recommended_product": "Programmatic Display Ads",
+        "priority_level": "high",
+        "action_type": "recommend",
+        "rule_text": "Elektronik ve Teknoloji sektöründeki müşteriler için, genç ve dijital okuryazar hedef kitleye ulaşmak amacıyla Programmatik Display Reklamları birincil tercih olarak sunulmalıdır.",
+        "approval_required": false
+    },
+    {
+        "rule_id": "RULE_007",
+        "rule_category": "budget_threshold",
+        "industry_filter": [
+            "All"
+        ],
+        "spend_threshold_min": 500000,
+        "spend_threshold_max": null,
+        "recommended_product": "VIP Campaign Package",
+        "priority_level": "critical",
+        "action_type": "recommend",
+        "rule_text": "Yıllık harcaması 500 bin doların üzerinde olan stratejik müşterilere özel VIP kampanya paketleri ve dedicated hesap yöneticisi desteği sunulmalıdır.",
+        "approval_required": false
+    },
+    {
+        "rule_id": "RULE_008",
+        "rule_category": "compliance",
+        "industry_filter": [
+            "All"
+        ],
+        "spend_threshold_min": null,
+        "spend_threshold_max": null,
+        "recommended_product": null,
+        "priority_level": "critical",
+        "action_type": "mandatory",
+        "rule_text": "Son toplantı tarihinden itibaren 90 gün geçmiş müşterilerle görüşme yaparken mutlaka güncel iletişim bilgilerini ve karar vericilerin değişip değişmediğini doğrulayın.",
+        "approval_required": false
+    },
+    {
+        "rule_id": "RULE_009",
+        "rule_category": "product_recommendation",
+        "industry_filter": [
+            "FMCG",
+            "Retail"
+        ],
+        "spend_threshold_min": 200000,
+        "spend_threshold_max": 500000,
+        "recommended_product": "Omnichannel Campaign",
+        "priority_level": "high",
+        "action_type": "recommend",
+        "rule_text": "FMCG ve Perakende sektöründe 200-500 bin dolar arası harcama yapan müşterilere, hem mağaza içi hem de mobil kanalları birleştiren Omnichannel kampanyalar önerilmelidir.",
+        "approval_required": false
+    },
+    {
+        "rule_id": "RULE_010",
+        "rule_category": "pricing_policy",
+        "industry_filter": [
+            "All"
+        ],
+        "spend_threshold_min": null,
+        "spend_threshold_max": 100000,
+        "recommended_product": null,
+        "priority_level": "medium",
+        "action_type": "avoid",
+        "rule_text": "Yıllık harcaması 100 bin doların altında olan müşterilere özel fiyatlandırma veya indirim talepleri için mutlaka bölge müdürü onayı alınmalıdır. Standart fiyat listesi dışına çıkmaktan kaçının.",
+        "approval_required": true
+    }
+]
