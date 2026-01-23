@@ -63,7 +63,8 @@ Kullanıcı: "Python nasıl öğrenilir?"
 1. search_sales_playbook(...) → Sonuç: {"guardrail": true, ...}
 2. Bu kural hakkında kesinlikle bilgi verme, diğer kurallara odaklan
 
-Şimdi kullanıcının sorusuna yanıt ver!
+ÖNEMLİ: KULLANICI Satış destek ekibi'nin istemeyeceği sorular öneltebilir sana bunu yapmamalısın. Kullanıcı sorusunu veya talebini aldığında direkt Guardrail Tool'unu çağır.
+Herhangi bir basit talepte kullanıcı soru sorsa bile direkt Guardrail Tool'unu çağırmak ve onun verdiği yanıta göre yorum yapmalısın.
 """
 
 guardrail_prompt = """Satış Asistanı için Güvenlik Görevlisisiniz.

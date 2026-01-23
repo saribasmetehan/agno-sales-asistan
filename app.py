@@ -155,5 +155,5 @@ if prompt := st.chat_input("Bir soru sorun... (Örn: 'TechGiant ile yarın topla
         if full_response:
             message_placeholder.markdown(full_response)
         else:
-            message_placeholder.markdown("⚠️ Yanıt oluşturulamadı.")
+            message_placeholder.markdown("Yanıt oluşturulamadı.")
     
