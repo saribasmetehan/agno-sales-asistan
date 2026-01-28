@@ -87,7 +87,6 @@ class VectorDBProcessor:
         Returns:
             JSON string: Formatlanmış sonuçlar
         """
-        # ChromaDB çoklu filter için $and operatörü gerektirir
         where_clause = None
         if filter_dict and len(filter_dict) > 0:
             if len(filter_dict) == 1:

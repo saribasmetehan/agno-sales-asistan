@@ -7,11 +7,9 @@ from agno.db.sqlite import SqliteDb
 from pathlib import Path
 from data.processor import VectorDBProcessor
 
-# Initialize processor for playbook queries
 PLAYBOOK_PATH = Path(__file__).parent.parent / "data" / "sales_playbook.json"
 processor = VectorDBProcessor(json_path=str(PLAYBOOK_PATH))
 
-# Eğer collection boşsa, verileri yükle
 if processor.collection.count() == 0:
     print("[INFO] Vektor DB bos, playbook yukleniyor...")
     processor.load_and_embed()

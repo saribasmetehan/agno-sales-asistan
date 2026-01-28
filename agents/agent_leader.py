@@ -7,7 +7,6 @@ from agents.agent_playbook import PlaybookAgent
 from agents.agent_sql import SQLAgent
 from prompts.prompt import orchestrator_prompt
 
-# Shared database for all agents and team
 DB_PATH = Path(__file__).parent.parent / "data" / "agno_shared.db"
 
 team = Team(

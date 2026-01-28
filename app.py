@@ -1,7 +1,6 @@
 import streamlit as st
 from dotenv import load_dotenv
 
-# Load environment variables
 load_dotenv()
 
 from agents.agent_leader import team
@@ -15,7 +14,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for a cleaner look
 st.markdown("""
 <style>
     .stChatInput {
@@ -33,7 +31,7 @@ st.markdown("""
 if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())
 
-# Clean Sidebar
+
 with st.sidebar:
     st.title("Mimeda AI 🚀")
     st.markdown("---")
@@ -59,10 +57,7 @@ with st.sidebar:
 st.title("Mimeda Satış Asistanı")
 st.caption("🚀 Stratejik satış önerileri ve CRM analizleri")
 
-# Helper to clean response - REMOVED
-# We now rely on correct role filtering
 
-# Load and display chat history
 try:
     messages = team.get_session_messages(session_id=st.session_state.session_id)
     for msg in messages:
@@ -91,13 +86,11 @@ if prompt := st.chat_input("Bir soru sorun... (Örn: 'TechGiant ile yarın topla
     with st.chat_message("user", avatar="👤"):
         st.markdown(prompt)
 
-    # Generate response
     with st.chat_message("assistant", avatar="🤖"):
         message_placeholder = st.empty()
         full_response = ""
         tool_outputs = []
         
-        # Create an expander for tool logs, initially empty
         tool_expander = st.expander("🛠️ Ajan İşlemleri", expanded=False)
         tool_log_placeholder = tool_expander.empty()
         
@@ -151,7 +144,6 @@ if prompt := st.chat_input("Bir soru sorun... (Örn: 'TechGiant ile yarın topla
             except Exception as e:
                 st.error(f"Hata: {str(e)}")
         
-        # Final display without cursor
         if full_response:
             message_placeholder.markdown(full_response)
         else:
