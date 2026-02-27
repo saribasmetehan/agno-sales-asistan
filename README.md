@@ -49,7 +49,19 @@ Bu proje, **Agno 2.4.0** framework'ü kullanarak **multi-agent orchestration** p
   - **Strateji Sorguları**: Playbook Agent'ı çağırır
   - **Hibrit Sorgular**: Önce SQL Agent'tan müşteri bilgisi alır, sonra bu bilgiyle Playbook Agent'tan strateji ister
 
-#### 2. SQL Agent (CRM Uzmanı)
+#### 2. Guardrail Agent (Güvenlik Uzmanı)
+**Dosya**: [`agents/agent_guardrial.py`]
+
+- **Görev**: Kullanıcı sorgularının uçtan uca güvenli ve kurumsal politikalara uygun olup olmadığını denetler
+- **Model**: GPT-4o
+- **Tools**:
+  - `check_guardrails(query)`: Sorgu bazlı güvenlik kontrolü
+- **Kullanım Alanları**:
+  - Prompt injection / jailbreak denemelerinin engellenmesi
+  - Alakasız veya uygunsuz (satış dışı) konuların filtrelenmesi
+  - Şirket politikalarına aykırı sorguların reddedilmesi
+
+#### 3. SQL Agent (CRM Uzmanı)
 **Dosya**: [`agents/agent_sql.py`]
 
 - **Görev**: CRM veritabanına erişim ve veri analizi
@@ -65,7 +77,7 @@ Bu proje, **Agno 2.4.0** framework'ü kullanarak **multi-agent orchestration** p
   - Son toplantı tarihi sorguları
   - Hesap yöneticisi bazlı raporlar
 
-#### 3. Playbook Agent (Strateji Uzmanı)
+#### 4. Playbook Agent (Strateji Uzmanı)
 **Dosya**: [`agents/agent_playbook.py`]
 
 - **Görev**: Satış stratejileri ve güvenlik kontrolü
@@ -74,7 +86,6 @@ Bu proje, **Agno 2.4.0** framework'ü kullanarak **multi-agent orchestration** p
 - **Playbook**: [`data/sales_playbook.json`] (10 kural)
 - **Tools**:
   - `playbook_search(query_text, n_results, filter_dict)`: Anlamsal arama
-  - `check_guardrails(query)`: Güvenlik kontrolü
 - **Kullanım Alanları**:
   - Sektörel stratejiler
   - Bütçe bazlı ürün önerileri
@@ -777,6 +788,7 @@ mgrs-agno/
 │
 ├── agents/                     # Ajan modülleri
 │   ├── agent_leader.py        # Team Leader - Koordinatör
+│   ├── agent_guardrial.py     # Guardrail Agent - Güvenlik
 │   ├── agent_playbook.py      # Playbook Agent - Strateji
 │   └── agent_sql.py           # SQL Agent - CRM veri
 │
