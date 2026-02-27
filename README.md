@@ -1,4 +1,4 @@
-# Mimeda AI Satış Asistanı 🤖
+# AI Satış Asistanı 🤖
 
 Satış ekipleri için geliştirilmiş, yapay zeka destekli akıllı satış asistanı. CRM veritabanı analizi ve satış playbook stratejilerini birleştirerek, satış temsilcilerine veriye dayalı ve şirket politikalarına uygun öneriler sunar.
 
