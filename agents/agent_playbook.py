@@ -1,5 +1,5 @@
 import json
-from tools.utils import call_llm
+
 from prompts.prompt import system_prompt, guardrail_prompt
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
@@ -42,7 +42,6 @@ def playbook_search(query_text: str, n_results: int = 1, filter_dict: dict = Non
             JSON string: Bulunan playbook kurallarının detaylı listesi. HER ZAMAN TÜM FIELD'LARI bildirmek zorundasın!
         """
         return processor.playbook_query(query_text, n_results, filter_dict)
-
 
 
 def check_guardrails(query: str) -> str:

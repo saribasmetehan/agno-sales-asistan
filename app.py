@@ -8,7 +8,7 @@ import uuid
 import time
 
 st.set_page_config(
-    page_title="Mimeda Satış Asistanı",
+    page_title="Satış Asistanı",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -33,7 +33,7 @@ if "session_id" not in st.session_state:
 
 
 with st.sidebar:
-    st.title("Mimeda AI 🚀")
+    st.title("AI Satış Asistanı 🚀")
     st.markdown("---")
     
     st.markdown("### 💬 Oturum")
@@ -54,7 +54,7 @@ with st.sidebar:
     """)
 
 # Main Content
-st.title("Mimeda Satış Asistanı")
+st.title("Satış Asistanı")
 st.caption("🚀 Stratejik satış önerileri ve CRM analizleri")
 
 
@@ -118,7 +118,7 @@ if prompt := st.chat_input("Bir soru sorun... (Örn: 'TechGiant ile yarın topla
                         if chunk_type == 'RunContentEvent':
                             # Only display content from the main team leader to avoid duplication
                             agent_name = getattr(chunk, 'agent_name', None)
-                            if agent_name is None or agent_name == "Mimeda Sales Team":
+                            if agent_name is None or agent_name == "Sales Team":
                                 full_response += content
                                 message_placeholder.markdown(full_response + "▌")
                         # Other types (RunResponse, etc.) are usually tool logs

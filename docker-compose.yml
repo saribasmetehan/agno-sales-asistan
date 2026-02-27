@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     build: .
-    container_name: mimeda-app
+    container_name: sales-assistant-app
     ports:
       - "8501:8501"
     env_file:
