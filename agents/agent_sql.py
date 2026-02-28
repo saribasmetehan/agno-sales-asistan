@@ -4,7 +4,7 @@ from pathlib import Path
 from agno.agent import Agent
 from agno.db.sqlite import SqliteDb
 from agno.models.openai import OpenAIChat
-from prompts.prompt import system_prompt
+from prompts.prompt import sql_prompt
 
 DB_PATH = Path(__file__).parent.parent / "data" / "crm.db"
 
@@ -74,7 +74,7 @@ SQLAgent = Agent(
         get_schema,
         run_sql_query,
     ],
-    instructions=system_prompt,
+    instructions=sql_prompt,
     add_history_to_context=True,
     markdown=True,
 )

@@ -10,5 +10,4 @@ services:
       - .env
     restart: unless-stopped
     volumes:
-      # Mount data directory for persistence (optional)
-      - ./data:/app/data
+      - ./:/app

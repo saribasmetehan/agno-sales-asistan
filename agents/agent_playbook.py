@@ -1,6 +1,6 @@
 import json
 
-from prompts.prompt import system_prompt, guardrail_prompt
+from prompts.prompt import playbook_prompt, guardrail_prompt
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.db.sqlite import SqliteDb
@@ -43,32 +43,14 @@ def playbook_search(query_text: str, n_results: int = 1, filter_dict: dict = Non
         """
         return processor.playbook_query(query_text, n_results, filter_dict)
 
-
-def check_guardrails(query: str) -> str:
-    f"""
-    Satış Asistanı için Güvenlik Kontrolü Tool'udur.
-    Bu tool her kullanıcı sorgusunun güvenli olup olmadığını kontrol eder. Her zaman ilk çalışması gereken tool'dur.
-    
-    """
-    try:
-        result = call_llm(
-            user_prompt=query,
-            system_prompt=guardrail_prompt,
-        )
-        return result.strip()
-    except Exception as e:
-        return f"UNSAFE: Error: {str(e)}"
-
-
 PlaybookAgent = Agent(
     name="Playbook Agent",
     model=OpenAIChat(id="gpt-4o"),
     db=SqliteDb(db_file=str(Path(__file__).parent.parent / "data" / "agno_shared.db")),
     tools=[
-        playbook_search,
-        check_guardrails,
+        playbook_search
     ],
-    instructions=system_prompt,
+    instructions=playbook_prompt,
     add_history_to_context=True,
     markdown=True,
 )

@@ -3,7 +3,7 @@ from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.db.sqlite import SqliteDb
 
-from prompts.prompt import guardrail_prompt, system_prompt
+from prompts.prompt import guardrail_prompt
 from tools.utils import call_llm
 
 def check_guardrails(query: str) -> str:
