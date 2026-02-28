@@ -2,6 +2,8 @@
 
 Satış ekipleri için geliştirilmiş, yapay zeka destekli akıllı satış asistanı. CRM veritabanı analizi ve satış playbook stratejilerini birleştirerek, satış temsilcilerine veriye dayalı ve şirket politikalarına uygun öneriler sunar.
 
+[![AI Satış Asistanı Demo Videosu](https://img.youtube.com/vi/BTnyGb4LKP0/0.jpg)](https://www.youtube.com/watch?v=BTnyGb4LKP0)
+
 ## 📋 İçindekiler
 
 - [Özellikler](#-özellikler)
