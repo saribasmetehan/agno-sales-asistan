@@ -3,6 +3,7 @@
 Satış ekipleri için geliştirilmiş, yapay zeka destekli akıllı satış asistanı. CRM veritabanı analizi ve satış playbook stratejilerini birleştirerek, satış temsilcilerine veriye dayalı ve şirket politikalarına uygun öneriler sunar.
 
 <video src="https://github.com/saribasmetehan/agno-sales-asistan/raw/main/demo.mp4" controls="controls" width="100%"></video>
+
 ## 📋 İçindekiler
 
 - [Özellikler](#-özellikler)
@@ -10,7 +11,7 @@ Satış ekipleri için geliştirilmiş, yapay zeka destekli akıllı satış asi
 - [Kod Akışı](#-kod-akışı)
 - [Sistem Akış Diagramı](#-sistem-akış-diagramı)
 - [Kurulum](#-kurulum)
-  - [Docker ile Kurulum](#-docker-ile-kurulum-önerilen)
+- [Docker ile Kurulum](#-docker-ile-kurulum-önerilen)
 - [Kullanım](#-kullanım)
 - [Agent Tool Yetenekleri](#-agent-tool-yetenekleri)
 - [Metadata Filter Özellikleri](#-metadata-filter-özellikleri)
