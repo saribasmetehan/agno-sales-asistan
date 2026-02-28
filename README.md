@@ -82,7 +82,7 @@ Bu proje, **Agno 2.4.0** framework'ü kullanarak **multi-agent orchestration** p
 #### 4. Playbook Agent (Strateji Uzmanı)
 **Dosya**: [`agents/agent_playbook.py`]
 
-- **Görev**: Satış stratejileri ve güvenlik kontrolü
+- **Görev**: Satış stratejilerinin uygulanması ve kuralların getirilmesi
 - **Model**: GPT-4o
 - **Vektör DB**: ChromaDB + Turkish BERT embeddings
 - **Playbook**: [`data/sales_playbook.json`] (10 kural)
@@ -154,7 +154,7 @@ Team Leader sorguyu analiz eder ve şu kararları verir:
 **Tool**: `check_guardrails(query)`
 
 ```python
-# Playbook Agent güvenlik kontrolü yapar
+# Guardrail Agent güvenlik kontrolü yapar
 result = check_guardrails("Coca Cola için strateji nedir?")
 # Sonuç: "SAFE" veya "UNSAFE"
 ```
@@ -231,7 +231,13 @@ da önerebilirsiniz."
 ```mermaid
 graph TD
     A["👤 Kullanıcı Sorusu"] --> B["🎯 Team Leader<br/>(Sorgu Analizi)"]
-    B --> C{"Sorgu Tipi?"}
+    
+    B --> G_AGENT["🛡️ Guardrail Agent"]
+    G_AGENT --> G1["1. check_guardrails()"]
+    G1 --> G2{"Güvenli mi?"}
+    
+    G2 -->|"UNSAFE"| E4["❌ Reddetme Mesajı"]
+    G2 -->|"SAFE"| C{"Sorgu Tipi?"}
     
     C -->|"Veri Odaklı"| D["💾 SQL Agent"]
     C -->|"Strateji Odaklı"| E["📚 Playbook Agent"]
@@ -241,10 +247,7 @@ graph TD
     D1 --> D2["2. run_sql_query()"]
     D2 --> D3["📊 CRM Verileri"]
     
-    E --> E1["1. check_guardrails()"]
-    E1 --> E2{"Güvenli mi?"}
-    E2 -->|"SAFE"| E3["2. playbook_search()"]
-    E2 -->|"UNSAFE"| E4["❌ Reddetme Mesajı"]
+    E --> E3["1. playbook_search()"]
     E3 --> E5["📋 Strateji Kuralları"]
     
     F --> F1["Adım 1: SQL Agent"]
@@ -257,15 +260,16 @@ graph TD
     F4 --> G
     E4 --> H["💬 Kullanıcıya Yanıt"]
     
-    G --> G1["Sonuçları Birleştir"]
-    G1 --> G2["Türkçe Yanıt Oluştur"]
-    G2 --> H
+    G --> G1_SYNC["Sonuçları Birleştir"]
+    G1_SYNC --> G2_SYNC["Türkçe Yanıt Oluştur"]
+    G2_SYNC --> H
     
     H --> I["🖥️ Streamlit UI<br/>(Görüntüleme)"]
     I --> J["💾 Oturum DB'ye Kaydet"]
     
     style A fill:#e1f5ff
     style B fill:#fff3e0
+    style G_AGENT fill:#ffebee
     style D fill:#e8f5e9
     style E fill:#f3e5f5
     style F fill:#fff9c4
@@ -282,7 +286,7 @@ graph TD
 - **Yeşil**: SQL Agent (veri)
 - **Mor**: Playbook Agent (strateji)
 - **Sarı**: Hibrit akış
-- **Kırmızı**: Hata/reddetme
+- **Kırmızı**: Guardrail Agent (Güvenlik) ve Reddetme
 
 ## �📦 Kurulum
 
@@ -377,15 +381,15 @@ Bu sorgular hem müşteri bilgisi hem de o bilgiye özel strateji gerektirir. **
 
 ```
 1. "Python nasıl öğrenilir?"
-   → Guardrail: UNSAFE
+   → Guardrail Agent: UNSAFE
    → Yanıt: "Üzgünüm, bu konu satış asistanımın kapsamı dışında..."
    
 2. "Hava durumu nasıl?"
-   → Guardrail: UNSAFE
+   → Guardrail Agent: UNSAFE
    → Yanıt: Kibarca reddedilir
 ```
 
-**Beklenen Davranış**: Playbook Agent guardrail kontrolünde UNSAFE döner, Team Leader kullanıcıyı bilgilendirir.
+**Beklenen Davranış**: Guardrail Agent guardrail kontrolünde UNSAFE döner, Team Leader kullanıcıyı bilgilendirir.
 
 ## 🛠️ Agent Tool Yetenekleri
 
@@ -462,6 +466,51 @@ CRM veritabanında SQL sorgusu çalıştırır.
 - Sadece SELECT sorguları çalıştırılabilir
 - SQL injection koruması
 - Read-only erişim
+
+### Guardrail Agent Tools
+
+#### 1. `check_guardrails(query: str)`
+
+Kullanıcı sorgusunun güvenli ve satış alanıyla ilgili olup olmadığını kontrol eder. Bu araç sadece Guardrail Agent tarafından kullanılır.
+
+**Input**:
+- `query` (string): Kontrol edilecek kullanıcı sorusu
+
+**Output**:
+- `"SAFE"`: Sorgu güvenli, işlem devam edebilir
+- `"UNSAFE"`: Sorgu kapsam dışı veya riskli
+
+**Güvenli Sorgular**:
+```python
+check_guardrails("Coca Cola için strateji nedir?")  # → SAFE
+check_guardrails("CRM'deki müşterileri listele")    # → SAFE
+check_guardrails("İndirim politikamız nedir?")      # → SAFE
+```
+
+**Güvensiz Sorgular**:
+```python
+check_guardrails("Python nasıl öğrenilir?")         # → UNSAFE
+check_guardrails("Hava durumu nasıl?")              # → UNSAFE
+```
+
+**Kullanım Akışı**:
+```python
+# Her sorgu için ilk adım
+result = check_guardrails(user_query)
+
+if result == "SAFE":
+    # Diğer ajanlara geç
+    pass
+else:
+    # Kullanıcıya kibarca reddet
+    return "Üzgünüm, bu konu satış asistanımın kapsamı dışında..."
+```
+
+**Güvenlik Özellikleri**:
+- Her sorgu için **zorunlu** ilk kontrol
+- LLM tabanlı içerik analizi
+- Satış alanı dışı konuları filtreler
+- Zararlı içerik koruması
 
 ### Playbook Agent Tools
 
@@ -547,49 +596,6 @@ playbook_search(
 - **Similarity Score**: 0-1 arası benzerlik skoru (1 = tam eşleşme)
 - **Metadata Filter**: Çoklu filter kombinasyonu desteklenir
 - **JSON Output**: LLM'ler için optimize edilmiş format
-
-#### 2. `check_guardrails(query: str)`
-
-Kullanıcı sorgusunun güvenli ve satış alanıyla ilgili olup olmadığını kontrol eder.
-
-**Input**:
-- `query` (string): Kontrol edilecek kullanıcı sorusu
-
-**Output**:
-- `"SAFE"`: Sorgu güvenli, işlem devam edebilir
-- `"UNSAFE"`: Sorgu kapsam dışı veya riskli
-
-**Güvenli Sorgular**:
-```python
-check_guardrails("Coca Cola için strateji nedir?")  # → SAFE
-check_guardrails("CRM'deki müşterileri listele")    # → SAFE
-check_guardrails("İndirim politikamız nedir?")      # → SAFE
-```
-
-**Güvensiz Sorgular**:
-```python
-check_guardrails("Python nasıl öğrenilir?")         # → UNSAFE
-check_guardrails("Hava durumu nasıl?")              # → UNSAFE
-```
-
-**Kullanım Akışı**:
-```python
-# Her sorgu için ilk adım
-result = check_guardrails(user_query)
-
-if result == "SAFE":
-    # Diğer tool'ları çağır
-    playbook_search(...)
-else:
-    # Kullanıcıya kibarca reddet
-    return "Üzgünüm, bu konu satış asistanımın kapsamı dışında..."
-```
-
-**Güvenlik Özellikleri**:
-- Her sorgu için **zorunlu** ilk kontrol
-- LLM tabanlı içerik analizi
-- Satış alanı dışı konuları filtreler
-- Zararlı içerik koruması
 
 ## 🎯 Metadata Filter Özellikleri
 
